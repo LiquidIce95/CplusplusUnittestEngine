@@ -37,3 +37,6 @@ test1 SUCCESS , time in miliseconds for this test : 0<br>
 <br>
 
 it also catches errors during test<br>
+
+
+the timer makes no sense... will update in future
