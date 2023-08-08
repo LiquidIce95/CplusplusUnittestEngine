@@ -8,18 +8,21 @@ example:<br>
 //create an testcase object;<br>
 TestCase S;<br>
 
-define arguments for the function to be tested and the solution, first argument of S.asser is a name for the test, then the solution and then the output of the function to be tested<br>
+define arguments for the function to be tested and the solution, first argument of S.asser is a name for the test, then the name of the function to be tested and then its arguments, below "solution" and "counti" are the function names<br>
 vector<int> positions = {1,3,1,4,2,3,5,4};<br>
 S.asser("test1",6,solution(5,positions));<br>
 <br>
 positions = {1,3};<br>
-S.asser("test2",-1,solution(3,positions));<br>
+S.asser("test2",-1,solution,3,positions);<br>
 <br>
 positions = {1,1};<br>
-S.asser("test3",-1,solution(3,positions));<br>
+S.asser("test3",-1,solution,3,positions);<br>
 
 positions = {1,1};<br>
-S.asser("test1",0,solution(1,positions));<br>
+S.asser("test1",0,solution,1,positions);<br>
+<br>
+//calling a function with no arguments
+ser.asser("test2",1,counti);<br>
 <br>
 //call this to get the summary below <br>
 S.feedback();<br>
