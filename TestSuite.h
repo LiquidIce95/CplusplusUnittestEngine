@@ -4,6 +4,7 @@
 #include <sstream>
 #include <iostream>
 #include <chrono>
+#include <functional>
 
 template <typename T>
 std::ostream& operator<<(std::ostream& os, const std::vector<T> v){
@@ -28,17 +29,21 @@ class TestCase {
         std::vector<bool> tests;
         std::vector<std::string> msgs;
         
-        template<typename CorrectType, typename OutputType>
-        void asser(std::string testname , CorrectType correct, OutputType output){
-
-            auto start = std::chrono::high_resolution_clock::now();
-
+        template<typename Func, typename CorrectType, typename... Args>
+        void asser(std::string testname, CorrectType correct, Func&& func, Args&&... args) {
             const std::string red("\033[1;31m");
             const std::string green("\033[1;32m");
             std::string reset("\033[0m");
 
+            std::chrono::duration<double> elapsed;
 
             try {
+                auto start = std::chrono::high_resolution_clock::now(); // Start timer before invocation
+                auto output = std::invoke(std::forward<Func>(func), std::forward<Args>(args)...);
+                auto finish = std::chrono::high_resolution_clock::now(); // Stop timer after invocation
+
+                elapsed = finish - start; // Calculate elapsed time
+                
                 if(correct == output){
                     std::cout<<green<<"● "<<reset;
                     this->tests.push_back(true);
@@ -50,20 +55,15 @@ class TestCase {
                     std::string message = testname+" FAILED ,expected: "+tostring(correct)+" actual: "+tostring(output);
                     this->msgs.push_back(message);
                 }
-
             }
             catch(const std::exception& e){
                 std::cout<<red<<"."<<reset;
                 this->tests.push_back(false);
-                this->msgs.push_back(testname+" ERROR occured"+e.what());
+                this->msgs.push_back(testname+" ERROR occurred "+e.what());
             }
-            auto finish = std::chrono::high_resolution_clock::now();
 
-            std::chrono::duration<double> elapsed = finish - start;
-
-            this->msgs[msgs.size()-1] += ", time in miliseconds for this test : "+tostring(std::chrono::duration_cast<std::chrono::milliseconds>(elapsed).count());
-
-            this->time += elapsed;
+            this->msgs[msgs.size()-1] += ", time in milliseconds for this test : "+tostring(std::chrono::duration_cast<std::chrono::milliseconds>(elapsed).count());
+            this->time += elapsed; // Accumulate total time
         }
 
         void feedback(){
