@@ -8,7 +8,7 @@ example:<br>
 //create an testcase object;<br>
 TestCase S;<br>
 
-define arguments for the function to be tested and the solution, first argument of S.asser is a name for the test, then the name of the function to be tested and then its arguments, below "solution" and "counti" are the function names<br>
+define arguments for the function to be tested and the solution, first argument of S.asser is a name for the test,then the expected value for the test, then the name of the function to be tested and then its arguments, below "solution" and "counti" are the function names. For functions with return type void see last example<br>
 vector<int> positions = {1,3,1,4,2,3,5,4};<br>
 S.asser("test1",6,solution(5,positions));<br>
 <br>
