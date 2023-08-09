@@ -23,7 +23,7 @@ S.asser("test3",-1,solution,3,positions);<br>
 positions = {1,1};<br>
 S.asser("test1",0,solution,1,positions);<br>
 <br>
-//calling a function with no arguments
+//calling a function with no arguments<br>
 ser.asser("test2",1,counti);<br>
 <br>
 //call this to get the summary below <br>
