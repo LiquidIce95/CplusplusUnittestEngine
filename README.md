@@ -3,14 +3,14 @@ test engine for C++, inspiered by python unittests<br>
 
 created with C++20, the function feedback prints the unicode character ● , your console needs to support this or change it in the header.<br>
 
+define arguments for the function to be tested and the solution, first argument of S.asser is a name for the test,then the expected value for the test, then the name of the function to be tested and then its arguments, below "solution" and "counti" are the function names.<br>
+it also catches errors during test<br>
 include the header in your project then youre ready to go<br>
 
 example:<br>
 
 //create an testcase object;<br>
 TestCase S;<br>
-
-define arguments for the function to be tested and the solution, first argument of S.asser is a name for the test,then the expected value for the test, then the name of the function to be tested and then its arguments, below "solution" and "counti" are the function names.<br>
 vector<int> positions = {1,3,1,4,2,3,5,4};<br>
 S.asser("test1",6,solution(5,positions));<br>
 <br>
@@ -41,4 +41,3 @@ test1 SUCCESS , time in miliseconds for this test : 0<br>
 0 milliseconds total time  <br>
 <br>
 
-it also catches errors during test<br>
