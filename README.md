@@ -3,6 +3,8 @@ test engine for C++, inspiered by python unittests<br>
 
 created with C++20, the function feedback prints the unicode character ● , your console needs to support this or change it in the header.<br>
 
+include the header in your project then youre ready to go<br>
+
 example:<br>
 
 //create an testcase object;<br>
